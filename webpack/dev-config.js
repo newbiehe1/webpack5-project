@@ -10,7 +10,6 @@ const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 let proxyData = {
     publicPath: "/",
     hot: true,
-    stats: "errors-only",
     host: "0.0.0.0",
     contentBase: path.join(__dirname, "../server"),
 };
@@ -37,11 +36,6 @@ module.exports = merge(config, {
         minimizer: [
             new TerserPlugin({
                 extractComments: false,
-                terserOptions: {
-                    compress: {
-                        drop_console: true,
-                    },
-                },
             }),
         ],
     },
@@ -51,5 +45,4 @@ module.exports = merge(config, {
             clear: true,
         }),
     ],
-    stats: "errors-only",
 });

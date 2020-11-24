@@ -23,7 +23,7 @@ const IP = (function () {
 })();
 
 const worker = new Worker(path.join(__dirname, "./get-port.js"));
-process.stderr.write(` server start ..... \n\n`);
+process.stderr.write(` server start ..... \n`);
 worker.on("message", (e) => {
     config = merge(config, {
         devServer: {

@@ -1,2 +1,8 @@
-document.write("213213213");
-console.log(process.env);
+import Vue from "vue";
+import App from "./app";
+
+new Vue({
+    render: (h) => {
+        return h(App);
+    },
+}).$mount("#app");
