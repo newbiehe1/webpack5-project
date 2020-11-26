@@ -17,6 +17,9 @@ config = merge(config, {
                     compress: {
                         drop_console: true,
                     },
+                    ie8: true,
+                    safari10: true,
+                    toplevel: true,
                 },
             }),
         ],

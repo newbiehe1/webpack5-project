@@ -29,13 +29,18 @@ fsPromises
     });
 
 module.exports = merge(config, {
-    devtool: "inline-source-map",
     mode: "development",
     devServer: proxyData,
     optimization: {
         minimizer: [
             new TerserPlugin({
                 extractComments: false,
+                terserOptions: {
+                    ie8: true,
+                    safari10: true,
+                    toplevel: true,
+                    compress: {},
+                },
             }),
         ],
     },

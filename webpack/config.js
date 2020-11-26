@@ -71,6 +71,10 @@ const rules = [
         exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file),
         use: {
             loader: "babel-loader",
+            options: {
+                presets: [["@babel/preset-env", { targets: "ie 11" }]],
+                // plugins: ["@babel/plugin-proposal-class-properties"],
+            },
         },
     },
     {
@@ -98,7 +102,6 @@ const rules = [
 
 const plugins = [
     new HtmlWebpackPlugin({
-        title: "webpack",
         filename: "index.html",
         minify: false,
         meta: {
@@ -115,9 +118,6 @@ const plugins = [
             },
         },
         template: path.resolve(__dirname, "../public/index.html"),
-        // templateParameters: {
-        //     process: process,
-        // },
     }),
 
     new MiniCssExtractPlugin({
