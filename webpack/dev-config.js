@@ -11,7 +11,12 @@ let proxyData = {
     publicPath: "/",
     hot: true,
     host: "0.0.0.0",
+    compress: true,
+    inline: true,
+    stats: 'errors-only',
     contentBase: path.join(__dirname, "../server"),
+    progress: true,
+    noInfo: true
 };
 const fsPromises = fs.promises;
 
