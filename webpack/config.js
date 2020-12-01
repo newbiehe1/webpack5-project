@@ -9,6 +9,8 @@ const entry = {
     app: path.resolve(__dirname, "../src/main.js"),
 };
 const optimization = {
+    moduleIds: "named",
+    mergeDuplicateChunks: true,
     splitChunks: {
         chunks: "all",
         automaticNameDelimiter: ".",
@@ -38,9 +40,6 @@ const rules = [
     {
         test: /\.(s?css|styl(us|e)?)$/i,
         use: [
-            // {
-            //     loader: "vue-style-loader",
-            // },
             {
                 loader: MiniCssExtractPlugin.loader,
                 options: {
@@ -71,18 +70,16 @@ const rules = [
         exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file),
         use: {
             loader: "babel-loader",
-            options: {
-                presets: [["@babel/preset-env", { targets: "ie 11" }]],
-                // plugins: ["@babel/plugin-proposal-class-properties"],
-            },
+            options: {},
         },
     },
+    { test: /\.tsx?$/, loader: "ts-loader" },
     {
-        test: /\.vue$/i,
+        test: /\.vue$/,
         loader: "vue-loader",
     },
     {
-        test: /\.(woff|woff2|eot|ttf|otf)(\?\S*)?/,
+        test: /\.(woff|woff2|eot|ttf|otf)(\?\S*)?/i,
         use: [
             {
                 loader: "url-loader",
@@ -95,6 +92,15 @@ const rules = [
                         },
                     },
                 },
+            },
+        ],
+    },
+    {
+        test: /\.html$/,
+        use: [
+            "html-loader",
+            {
+                loader: "markup-inline-loader",
             },
         ],
     },
@@ -137,7 +143,7 @@ module.exports = {
     },
     resolve: {
         // mainFields: ["node_modules"],
-        extensions: [".js", ".vue", ".json"],
+        extensions: [".ts", ".vue", ".js", ".tsx", ".jsx", ".json"],
         alias: {
             "@": path.join(__dirname, "src"),
         },

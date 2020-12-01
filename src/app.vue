@@ -1,7 +1,7 @@
 
 <style lang="scss" scoped>
 div {
-    background-color: red;
+    background-color: bisque;
     text-align: center;
     color: #fff;
     display: flex;
@@ -11,10 +11,9 @@ div {
 </style>
 
 
-
 <template>
     <div class="app">
-        这是一个vue
+        这是一个app5
     </div>
 </template>
 <script>
@@ -22,8 +21,7 @@ export default {
     data() {
         return {};
     },
-    created() {
-        console.log("tag", "");
-    }
+    created() {},
+    mounted() {}
 };
 </script>
