@@ -70,7 +70,6 @@ const rules = [
         exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file),
         use: {
             loader: "babel-loader",
-            options: {},
         },
     },
     { test: /\.tsx?$/, loader: "ts-loader" },

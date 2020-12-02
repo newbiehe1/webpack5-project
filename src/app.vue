@@ -1,7 +1,7 @@
 
 <style lang="scss" scoped>
 div {
-    background-color: bisque;
+    background-color: seagreen;
     text-align: center;
     color: #fff;
     display: flex;
