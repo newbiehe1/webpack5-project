@@ -13,7 +13,7 @@ div {
 
 <template>
     <div class="app">
-        这是一个app5
+        Q1234RWRFASDF
     </div>
 </template>
 <script>

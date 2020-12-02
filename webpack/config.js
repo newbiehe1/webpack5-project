@@ -3,20 +3,9 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const entry = {
     app: path.resolve(__dirname, "../src/main.js"),
-};
-const optimization = {
-    moduleIds: "named",
-    mergeDuplicateChunks: true,
-    splitChunks: {
-        chunks: "all",
-        automaticNameDelimiter: ".",
-    },
-    minimize: true,
-    minimizer: [new CssMinimizerPlugin()],
 };
 
 const rules = [
@@ -37,6 +26,9 @@ const rules = [
             },
         ],
     },
+    //  process.env.NODE_ENV === "development"
+    //             ? "vue-style-loader"
+    //             :
     {
         test: /\.(s?css|styl(us|e)?)$/i,
         use: [
@@ -134,7 +126,6 @@ const plugins = [
 
 module.exports = {
     entry: entry,
-    optimization: optimization,
     output: {
         filename: "js/[name]-[chunkhash:5].js",
         publicPath: "./",
