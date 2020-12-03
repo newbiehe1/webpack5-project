@@ -28,40 +28,40 @@ config = merge(config, {
             }),
         ],
     },
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.(s?css|styl(us|e)?)$/i,
-    //             use: [
-    //                 {
-    //                     loader: MiniCssExtractPlugin.loader,
-    //                     options: {
-    //                         publicPath: (resourcePath, context) => {
-    //                             return (
-    //                                 path.relative(
-    //                                     path.dirname(resourcePath),
-    //                                     context
-    //                                 ) + "/css/"
-    //                             );
-    //                         },
-    //                     },
-    //                 },
-    //                 {
-    //                     loader: "css-loader", // 将 CSS 转化成 CommonJS 模块
-    //                     options: {
-    //                         import: true,
-    //                     },
-    //                 },
-    //                 {
-    //                     loader: "postcss-loader",
-    //                 },
-    //                 {
-    //                     loader: "sass-loader", // 将 Sass 编译成 CSS
-    //                 },
-    //             ],
-    //         },
-    //     ],
-    // },
+    module: {
+        rules: [
+            {
+                test: /\.(s?css|styl(us|e)?)$/i,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: (resourcePath, context) => {
+                                return (
+                                    path.relative(
+                                        path.dirname(resourcePath),
+                                        context
+                                    ) + "/css/"
+                                );
+                            },
+                        },
+                    },
+                    {
+                        loader: "css-loader", // 将 CSS 转化成 CommonJS 模块
+                        options: {
+                            import: true,
+                        },
+                    },
+                    {
+                        loader: "postcss-loader",
+                    },
+                    {
+                        loader: "sass-loader", // 将 Sass 编译成 CSS
+                    },
+                ],
+            },
+        ],
+    },
     plugins: [
         new CleanWebpackPlugin({
             cleanStaleWebpackAssets: false,
@@ -71,6 +71,10 @@ config = merge(config, {
                 console.clear();
                 console.log(`${msg} ${(val * 100).toFixed(2)}% ${module}`);
             },
+        }),
+        new MiniCssExtractPlugin({
+            filename: "css/[name]-[chunkhash:5].css",
+            chunkFilename: "css/[id]-[chunkhash:5].css",
         }),
     ],
 });

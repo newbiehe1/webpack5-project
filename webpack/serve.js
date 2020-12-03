@@ -42,6 +42,8 @@ worker.on("message", (e) => {
             },
         });
     }
+
+    WebpackDevServer.addDevServerEntrypoints(config, config.devServer);
     const compiler = webpack(config);
 
     const server = new WebpackDevServer(
@@ -51,7 +53,7 @@ worker.on("message", (e) => {
     server.listen(e, "0.0.0.0");
 
     compiler.hooks.done.tap("MyPlugin", (stats) => {
-        // console.clear();
+        console.clear();
         console.log(
             `\x1B[42m DONE \x1B[0m  \x1B[32mCompiled successfully in ${
                 stats.toJson().time

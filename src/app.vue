@@ -13,7 +13,7 @@ div {
 
 <template>
     <div class="app">
-        Q1234RWRFASDF
+        asdfasdf
     </div>
 </template>
 <script>
@@ -22,6 +22,9 @@ export default {
         return {};
     },
     created() {},
-    mounted() {}
+    mounted() {
+        console.log("tag", "");
+        // console.log("tag=", "");
+    }
 };
 </script>

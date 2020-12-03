@@ -1,6 +1,5 @@
 const path = require("path");
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -23,37 +22,6 @@ const rules = [
                         },
                     },
                 },
-            },
-        ],
-    },
-    //  process.env.NODE_ENV === "development"
-    //             ? "vue-style-loader"
-    //             :
-    {
-        test: /\.(s?css|styl(us|e)?)$/i,
-        use: [
-            {
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                    publicPath: (resourcePath, context) => {
-                        return (
-                            path.relative(path.dirname(resourcePath), context) +
-                            "/css/"
-                        );
-                    },
-                },
-            },
-            {
-                loader: "css-loader", // 将 CSS 转化成 CommonJS 模块
-                options: {
-                    import: true,
-                },
-            },
-            {
-                loader: "postcss-loader",
-            },
-            {
-                loader: "sass-loader", // 将 Sass 编译成 CSS
             },
         ],
     },
@@ -117,10 +85,6 @@ const plugins = [
         template: path.resolve(__dirname, "../public/index.html"),
     }),
 
-    new MiniCssExtractPlugin({
-        filename: "css/[name]-[chunkhash:5].css",
-        chunkFilename: "css/[id]-[chunkhash:5].css",
-    }),
     new VueLoaderPlugin(),
 ];
 

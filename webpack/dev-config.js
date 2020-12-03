@@ -17,35 +17,36 @@ let proxyData = {
     progress: true,
     compress: true,
     clientLogLevel: "none", //将要失效  下个版本
-    quiet: true,
+    // quiet: true,
     overlay: true,
+    // liveReload: true,
 };
 
 module.exports = merge(config, {
     mode: "development",
-    target: "web",
     devServer: proxyData,
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.(s?css|styl(us|e)?)$/i,
-    //             use: [
-    //                 "vue-style-loader",
-    //                 {
-    //                     loader: "css-loader", // 将 CSS 转化成 CommonJS 模块
-    //                     options: {
-    //                         import: true,
-    //                     },
-    //                 },
-    //                 {
-    //                     loader: "postcss-loader",
-    //                 },
-    //                 {
-    //                     loader: "sass-loader", // 将 Sass 编译成 CSS
-    //                 },
-    //             ],
-    //         },
-    //     ],
-    // },
+    module: {
+        rules: [
+            {
+                test: /\.(s?css|styl(us|e)?)$/i,
+                use: [
+                    "vue-style-loader",
+                    {
+                        loader: "css-loader", // 将 CSS 转化成 CommonJS 模块
+                        options: {
+                            esModule: false,
+                            import: true,
+                        },
+                    },
+                    {
+                        loader: "postcss-loader",
+                    },
+                    {
+                        loader: "sass-loader", // 将 Sass 编译成 CSS
+                    },
+                ],
+            },
+        ],
+    },
     plugins: [new webpack.HotModuleReplacementPlugin()],
 });

@@ -7,4 +7,5 @@ new Vue({
     },
 }).$mount("#app");
 
-// console.log("sdfasdf", "");
+console.log("sdfasdf", "");
+console.log("113212132", "");
